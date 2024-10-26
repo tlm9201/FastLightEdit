@@ -23,6 +23,7 @@ plugins {
     // paperweight for nms
     id("io.papermc.paperweight.userdev") version "1.7.4"
 
+    `maven-publish`
     // Apply the application plugin to add support for building a CLI application.
     application
 }
@@ -71,6 +72,27 @@ dependencies {
         "1.20" -> paperweight.paperDevBundle("1.20.2-R0.1-SNAPSHOT")
         "1.21" -> paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
         else -> paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT") // fallback to latest
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Repsy"
+            url = uri("https://repo.repsy.io/mvn/tlm920/minecraft")
+            credentials {
+                // use local props instead
+                username = project.findProperty("repsy.user") as String?
+                password = project.findProperty("repsy.key") as String?
+            }
+        }
+    }
+
+    publications.create<MavenPublication>("maven") {
+        from(components["java"])
+        groupId = "phonon.blockedit"
+        artifactId = "fast-block-edit"
+        version = "$target-SNAPSHOT"
     }
 }
 

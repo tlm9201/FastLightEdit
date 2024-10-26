@@ -1,12 +1,65 @@
-# fast edit
+# fast block edit
 allow editing many blocks in mineman in single transaction
 
 included as separate lib because requires nms .jar dependencies, which has conflicting
 dependencies (gson) with main Nodes library
 
 original author: toshimichi, phonon
+
 maintained by: tlm920 <timo@timomcgrath.com>
 
+
+## Using this library: 
+
+### Maven
+Repository:
+```xml
+<repository>
+    <id>tlm920</id>
+    <url>https://repo.repsy.io/mvn/tlm920/minecraft</url>
+</repository>
+```
+Dependency:
+```xml
+<dependency>
+    <groupId>phonon.blockedit</groupId>
+    <artifactId>fast-block-edit</artifactId>
+    <version>1.21-SNAPSHOT</version> <!-- or other version -->
+</dependency>
+```
+
+### Gradle
+Repository (Kotlin):
+```kotlin
+repositories {
+    maven {
+        url = uri("https://repo.repsy.io/mvn/tlm920/minecraft")
+    }
+}
+```
+Repository (Groovy):
+```groovy
+repositories {
+    maven {
+        url = 'https://repo.repsy.io/mvn/tlm920/minecraft'
+    }
+}
+```
+Dependency (Kotlin):
+```kotlin
+dependencies {
+    implementation("phonon.blockedit:fast-block-edit:1.21-SNAPSHOT") // or other version
+}
+```
+Dependency (Groovy):
+```groovy
+dependencies {
+    implementation 'phonon.blockedit:fast-block-edit:1.21-SNAPSHOT' // or other version
+}
+```
+
+
+### Explanation
 ```
 Fast set blocks
 Because default world.setBlock or block.setType is very slow (lighting + packets)
